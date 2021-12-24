@@ -10,6 +10,6 @@ export const errorHandler = (error: Error, req: Request, res: Response, next: Ne
     }
 
     res.status(400).send({
-        errors: [{message: 'Unknown error'}]
+        errors: [{message: error.message}]
     })
 };

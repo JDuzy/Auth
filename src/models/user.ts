@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { reduceEachLeadingCommentRange } from 'typescript';
 import {Password} from '../services/password'
 
 //An interface that describes the properties that needed to be passed to an user
@@ -23,6 +24,15 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    }
+},{
+    toJSON: {
+        transform(doc, ret){
+            ret.id = ret._id;
+            delete ret._id;
+            delete ret.password;
+            delete ret.__v;
+        }
     }
 });
 
